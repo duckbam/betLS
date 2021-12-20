@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.myticket.dao.IMemberDAO">
+
+ 	<insert id="joinProc"
+		parameterType="com.project.myticket.dto.MemberDTO">
+		INSERT INTO betls_member VALUES(#{id}, #{pw}, #{name}, #{phone}, #{account}, #{money})
+	</insert>
+	
+	<select id="isExistId" resultType="int" parameterType="String">
+		SELECT count(*) FROM betls_member WHERE id=#{id}
+	</select>
+	
+	<select id="loginProc" resultType="com.project.myticket.dto.MemberDTO" parameterType="String">
+		SELECT * FROM betls_member WHERE id=#{id}
+	</select>
+	
+	<select id="memberList" resultType="com.project.myticket.dto.MemberDTO">
+    	SELECT * FROM betls_member
+    </select>
+    
+    <update id="modifyProc"
+		parameterType="com.project.myticket.dto.MemberDTO">
+		UPDATE betls_member set pw=#{pw}, name=#{name}, phone=#{phone}, account=#{account} WHERE id=#{id}
+	</update>
+	
+	<update id="adminModifyProc"
+		parameterType="com.project.myticket.dto.MemberDTO">
+		UPDATE betls_member set name=#{name}, phone=#{phone}, account=#{account}, money=#{money} WHERE id=#{id}
+	</update>
+    
+   	<delete id="deleteProc" parameterType="String">
+		DELETE FROM betls_member WHERE id=#{id}
+	</delete>
+	
+	<insert id="chargeProc"
+		parameterType="com.project.myticket.dto.ChargeDTO">
+		INSERT INTO chargelist VALUES(#{num}, #{id}, #{chargeMoney}, #{condi})
+	</insert>
+	
+	<select id="chargeList" resultType="com.project.myticket.dto.ChargeDTO">
+    	SELECT * FROM chargelist
+    </select>
+    
+    <select id="SeqNextVal" resultType="int">
+	    SELECT charge_seq.NEXTVAL FROM DUAL
+	</select>
+	
+	
+	<select id="chargeInfo" resultType="com.project.myticket.dto.ChargeDTO" parameterType="int">
+		SELECT * FROM chargelist WHERE num=#{num}
+	</select>
+	
+	<delete id="chargeDelete" parameterType="int">
+		DELETE FROM chargelist WHERE num=#{num}
+	</delete>
+    
+    
+	<insert id="exchangeProc"
+		parameterType="com.project.myticket.dto.ExchangeDTO">
+		INSERT INTO exchangelist VALUES(#{num}, #{id}, #{exchangeMoney}, #{condi})
+	</insert>
+	
+	<select id="exchangeList" resultType="com.project.myticket.dto.ExchangeDTO">
+    	SELECT * FROM exchangelist
+    </select>
+    
+    <select id="SeqNextVal2" resultType="int">
+	    SELECT exchange_seq.NEXTVAL FROM DUAL
+	</select>
+	
+	<select id="SeqNextVal3" resultType="int">
+	    SELECT betting_seq.NEXTVAL FROM DUAL
+	</select>
+	
+	
+	<select id="exchangeInfo" resultType="com.project.myticket.dto.ExchangeDTO" parameterType="int">
+		SELECT * FROM exchangelist WHERE num=#{num}
+	</select>
+	
+	   	<delete id="exchangeDelete" parameterType="int">
+		DELETE FROM exchangelist WHERE num=#{num}
+	</delete>
+	
+	 <insert id="soccerAddProc"
+		parameterType="com.project.myticket.dto.SoccerDTO">
+		INSERT INTO betls_soccer VALUES(#{num}, #{event}, #{team}, #{win}, #{draw}, #{lose}, #{time})
+	</insert>
+	
+	<select id="soccerList" resultType="com.project.myticket.dto.SoccerDTO">
+    	SELECT * FROM betls_soccer
+    </select>
+    <insert id="betting"
+		parameterType="com.project.myticket.dto.BettingDTO">
+		INSERT INTO betting VALUES(#{num}, #{id}, #{one}, #{two}, #{three}, #{four}, #{five}, #{six}, #{seven}, #{eight}, #{nine}, #{ten}, 
+		#{tenone}, #{tentwo}, #{tenthree}, #{tenfour}, #{tenfive}, #{tensix}, #{tenseven}, #{teneight}, #{tennine}, #{twoten}, #{betMoney}, #{result},
+		#{game_result}, #{results} )
+	</insert>
+
+	<update id="betMoney"
+		parameterType="com.project.myticket.dto.MemberDTO">
+		UPDATE betls_member set money=#{money} WHERE id=#{id}
+	</update>
+	
+	<select id="BettingList" resultType="com.project.myticket.dto.BettingDTO" parameterType="String">
+		SELECT * FROM betting WHERE id=#{id}
+	</select>
+	
+	<select id="bettingInfo" resultType="com.project.myticket.dto.BettingDTO" parameterType="int">
+		SELECT * FROM betting WHERE num=#{num}
+	</select>
+	
+	<select id="gameInfo" resultType="com.project.myticket.dto.SoccerDTO" parameterType="String">
+		SELECT * FROM betls_soccer WHERE num=#{num}
+	</select>
+	
+	<update id="gameModify" parameterType="com.project.myticket.dto.SoccerDTO">
+		UPDATE betls_soccer set event=#{event}, team=#{team}, win=#{win}, draw=#{draw}, lose=#{lose}, time=#{time} WHERE num=#{num}
+	</update>
+	
+	<delete id="gameDelete" parameterType="String">
+		DELETE FROM betls_soccer WHERE num=#{num}
+	</delete>
+	
+	<select id="bettingManage" resultType="com.project.myticket.dto.BettingDTO">
+    	SELECT * FROM betting
+    </select>
+    
+    <update id="bettingModify" parameterType="com.project.myticket.dto.BettingDTO">
+		UPDATE betting set results=#{results} WHERE num=#{num}
+	</update>
+	
+	<delete id="bettingDelete" parameterType="int">
+		DELETE FROM betting WHERE num=#{num}
+	</delete>
+	
+</mapper>
