@@ -45,6 +45,7 @@ create table betls_soccer(
  time varchar(50)
 );
 
+[배팅]
 create table betting (
  num number,
  id varchar2(100),
