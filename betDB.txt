@@ -1,0 +1,90 @@
+[회원가입]
+create betls_member(
+ id varchar2(100),      
+ pw varchar2(100), 
+ name varchar2(100),
+ phone varchar2(6), 
+ account varchar2(15),
+ money number
+);
+
+[충전]
+create table chargelist(
+ num number,
+ id varchar2(100),
+ chargemoney number,
+ condi varchar2(5)
+);
+
+[환전]
+create table exchangelist(
+ num number,
+ id varchar2(100),
+ exchangemoney number,
+ condi varchar2(5)
+);
+
+[환전 시퀀스]
+create sequence exchange_seq start with 1 increment by 1;
+
+[충전 시퀀스]
+create sequence charge_seq start with 1 increment by 1;
+
+[배팅내역 시퀀스]
+create sequence betting_seq start with 1 increment by 1;
+
+
+[축구]
+create table betls_soccer(
+ num varchar2(50),
+ event varchar2(50),
+ team varchar2(50),
+ win number,
+ draw number,
+ lose number,
+ time varchar(50)
+);
+
+create table betting (
+ num number,
+ id varchar2(100),
+ one varchar2(50),
+ two varchar2(50),
+ three varchar2(50),
+ four varchar2(50),
+ five varchar2(50),
+ six varchar2(50),
+ seven varchar2(50),
+ eight varchar2(50),
+ nine varchar2(50),
+ ten varchar2(50),
+ tenone varchar2(50),
+ tentwo varchar2(50),
+ tenthree varchar2(50),
+ tenfour varchar2(50),
+ tenfive varchar2(50),
+ tensix varchar2(50),
+ tenseven varchar2(50),
+ teneight varchar2(50),
+ tennine varchar2(50),
+ twoten varchar2(50),
+ betMoney number,
+ result number,
+ game_result number,
+ results varchar2(20)
+);
+ 
+ 
+
+
+
+
+
+
+
+ 
+ 
+ 
+
+ 
+     
